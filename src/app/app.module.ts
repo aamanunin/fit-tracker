@@ -16,6 +16,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -58,7 +62,11 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     MatSidenavModule,
     MatToolbarModule,
     FlexLayoutModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule,
+    MatCardModule,
+    MatSelectModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
