@@ -1,6 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {interval, Subscription} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {MatDialog} from '@angular/material/dialog';
+import {StopTrainingComponent} from './stop-training/stop-training.component';
 
 @Component({
   selector: 'app-current-training',
@@ -11,16 +12,43 @@ export class CurrentTrainingComponent implements OnInit, OnDestroy {
   progress = 0;
   private sub: Subscription;
 
-  constructor() { }
+  @Output() trainingExit = new EventEmitter();
+
+  constructor(private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
-    this.sub = interval(250)
-      .pipe(
-        tap(() => this.progress = this.progress + 1)
-      ).subscribe();
+    this.startOrResumeTimer();
   }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
+  }
+
+  startOrResumeTimer(): void {
+    this.sub = interval(250)
+      .subscribe(() => {
+        this.progress = this.progress + 1;
+        if (this.progress === 100) {
+          this.sub.unsubscribe();
+        }
+      });
+  }
+
+  onStop(): void {
+    this.sub.unsubscribe();
+    const dialogRef = this.dialog.open(StopTrainingComponent, {
+      data: {
+        progress: this.progress
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.trainingExit.emit();
+      } else {
+        this.startOrResumeTimer();
+      }
+    });
   }
 }
