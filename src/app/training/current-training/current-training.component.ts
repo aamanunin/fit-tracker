@@ -34,6 +34,7 @@ export class CurrentTrainingComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.progress = this.progress + 1;
         if (this.progress === 100) {
+          this.trainingService.completeExercise();
           this.sub.unsubscribe();
         }
       });
@@ -49,7 +50,7 @@ export class CurrentTrainingComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.trainingService.stopExercise();
+        this.trainingService.stopExercise(this.progress);
       } else {
         this.startOrResumeTimer();
       }
