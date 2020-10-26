@@ -27,4 +27,7 @@ export class PastTrainingsComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
+  applyFilter(event: KeyboardEvent): void {
+    this.dataSource.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
+  }
 }
