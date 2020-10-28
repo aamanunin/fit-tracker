@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ngfit-tracker": {
+      "hosting": {
+        "fit-tracker": [
+          "ngfit-tracker"
+        ]
+      }
+    }
+  }
+}

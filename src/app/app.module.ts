@@ -3,6 +3,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -74,7 +77,9 @@ import { StopTrainingComponent } from './training/current-training/stop-training
     MatDialogModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
