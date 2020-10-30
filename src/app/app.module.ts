@@ -5,6 +5,7 @@ import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -79,7 +80,8 @@ import { StopTrainingComponent } from './training/current-training/stop-training
     MatSortModule,
     MatPaginatorModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
