@@ -51,9 +51,11 @@
     </mat-checkbox>
 
     <button mat-raised-button
+            *ngIf="!(this.uiService.loadingStateChanged | async)"
             [disabled]="form.invalid"
             color="primary">
       Submit
     </button>
+    <mat-spinner *ngIf="this.uiService.loadingStateChanged | async"></mat-spinner>
   </form>
 </section>
