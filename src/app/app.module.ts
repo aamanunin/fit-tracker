@@ -28,9 +28,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { AuthModule } from './auth/auth.module';
+
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
 import { TrainingComponent } from './training/training.component';
 import { NewTrainingComponent } from './training/new-training/new-training.component';
 import { PastTrainingsComponent } from './training/past-trainings/past-trainings.component';
@@ -44,8 +44,6 @@ import { StopTrainingComponent } from './training/current-training/stop-training
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    SignupComponent,
     TrainingComponent,
     NewTrainingComponent,
     PastTrainingsComponent,
@@ -58,6 +56,7 @@ import { StopTrainingComponent } from './training/current-training/stop-training
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AuthModule,
     MatButtonModule,
     MatIconModule,
     AppRoutingModule,
