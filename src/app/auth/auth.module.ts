@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+import { SharedModule } from '../shared/shared.module';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,11 +20,9 @@ import { SignupComponent } from './signup/signup.component';
     SignupComponent
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    FlexModule,
-    FlexLayoutModule,
+    SharedModule,
     ReactiveFormsModule,
+    AngularFireAuthModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
     MatInputModule,
