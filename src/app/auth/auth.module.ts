@@ -13,6 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SignupComponent } from './signup/signup.component';
     SignupComponent
   ],
   imports: [
+    AuthRoutingModule,
     SharedModule,
     ReactiveFormsModule,
     AngularFireAuthModule,

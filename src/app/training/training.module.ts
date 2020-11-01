@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
+
 import { SharedModule } from '../shared/shared.module';
+import { TrainingRoutingModule } from './training-routing.module';
 
 import { NewTrainingComponent } from './new-training/new-training.component';
 import { TrainingComponent } from './training.component';
@@ -29,6 +31,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     StopTrainingComponent
   ],
   imports: [
+    TrainingRoutingModule,
     SharedModule,
     MatProgressSpinnerModule,
     MatCardModule,
