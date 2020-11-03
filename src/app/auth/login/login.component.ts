@@ -4,10 +4,9 @@ import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import * as fromApp from '../../app.reducer';
+import * as fromRoot from '../../app.reducer';
 
 import { AuthService } from '../auth.service';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -19,11 +18,11 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private store: Store<{ui: fromApp.AppState}>
+    private store: Store<fromRoot.State>
   ) { }
 
   ngOnInit(): void {
-    this.isLoading$ = this.store.pipe(map(state => state.ui.isLoading));
+    this.isLoading$ = this.store.select(fromRoot.getIsLoading);
   }
 
   onSubmit(form: NgForm): void {
