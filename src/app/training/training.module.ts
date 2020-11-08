@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
 
 import { SharedModule } from '../shared/shared.module';
 import { TrainingRoutingModule } from './training-routing.module';
+
+import * as fromTraining from './training.reducer';
 
 import { NewTrainingComponent } from './new-training/new-training.component';
 import { TrainingComponent } from './training.component';
@@ -20,7 +23,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
-
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatButtonModule,
     MatDialogModule,
     MatPaginatorModule,
-    MatTabsModule
+    MatTabsModule,
+    StoreModule.forFeature('training', fromTraining.reducer)
   ]
 })
 export class TrainingModule { }

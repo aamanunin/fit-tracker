@@ -1,6 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+
+import * as fromTraining from '../training.reducer';
+
 import { StopTrainingComponent } from './stop-training/stop-training.component';
 import { TrainingService } from '../training.service';
 
@@ -15,7 +20,8 @@ export class CurrentTrainingComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialog: MatDialog,
-    private trainingService: TrainingService
+    private trainingService: TrainingService,
+    private store: Store<fromTraining.State>
   ) {
   }
 
@@ -28,9 +34,11 @@ export class CurrentTrainingComponent implements OnInit, OnDestroy {
   }
 
   startOrResumeTimer(): void {
-    const step = this.trainingService.getRunningExercise().duration / 100 * 1000;
-
-    this.sub = interval(step)
+    this.sub = this.store.select(fromTraining.getActiveTraining)
+      .pipe(
+        map(ex => ex.duration / 100 * 1000),
+        mergeMap(step => interval(step))
+      )
       .subscribe(() => {
         this.progress = this.progress + 1;
         if (this.progress === 100) {

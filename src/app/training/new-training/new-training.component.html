@@ -3,26 +3,26 @@
     <form (ngSubmit)="onStartTraining(f)" #f="ngForm">
       <mat-card-title fxLayoutAlign="center">It`s time to start workout!</mat-card-title>
       <mat-card-content fxLayoutAlign="center">
-        <mat-form-field *ngIf="!isLoading && exercises" appearance="fill">
+        <mat-form-field *ngIf="!(isLoading$ | async) && (exercises$ | async)" appearance="fill">
           <mat-label>Choose exercise</mat-label>
           <mat-select ngModel required name="exercise">
-            <mat-option *ngFor="let exercise of exercises" [value]="exercise.id">
+            <mat-option *ngFor="let exercise of (exercises$ | async)" [value]="exercise.id">
               {{exercise.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <div *ngIf="isLoading" fxLayoutAlign="center">
+        <div *ngIf="isLoading$ | async" fxLayoutAlign="center">
           <mat-spinner></mat-spinner>
         </div>
       </mat-card-content>
-      <mat-card-actions *ngIf="!isLoading" fxLayoutAlign="center">
-        <button *ngIf="exercises"
+      <mat-card-actions *ngIf="!(isLoading$ | async)" fxLayoutAlign="center">
+        <button *ngIf="exercises$ | async"
                 type="submit"
                 [disabled]="f.invalid"
                 mat-button>
           Start!
         </button>
-        <button *ngIf="!exercises"
+        <button *ngIf="!(exercises$ | async)"
                 type="button"
                 (click)="fetchAgain()"
                 mat-button>
